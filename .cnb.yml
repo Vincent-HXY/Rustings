@@ -1,0 +1,56 @@
+# CI: push 到 main 分支时自动评测 + 上传分数
+main:
+  push:
+    - docker:
+        image: rust:latest
+      env:
+        CARGO_TERM_COLOR: always
+        TZ: Asia/Shanghai
+        OUTPUT: .ide/result/check_result.json
+        SUMMARY: .ide/result/summary.json
+      imports: https://cnb.cool/LearningOS/OSCamp-2026S/keys/-/blob/main/rustlings-secrets.yml
+      stages:
+        - name: Install jq
+          script: apt-get update && apt-get install -y jq
+
+        - name: Run tests
+          script: cargo test --test cicv --verbose
+
+        - name: Generate summary JSON
+          script: |
+            total_exercations=$(jq '.statistics.total_exercations' $OUTPUT)
+            total_succeeds=$(jq '.statistics.total_succeeds' $OUTPUT)
+            new_json=$(jq -n \
+              --arg channel "cnb" \
+              --argjson courseId "$RUSTLINGS_COURSE_ID" \
+              --arg ext "aaa" \
+              --arg name "$CNB_BUILD_USER" \
+              --argjson score "$total_succeeds" \
+              --argjson totalScore "$total_exercations" \
+              '{channel: $channel, courseId: $courseId, ext: $ext, name: $name, score: $score, totalScore: $totalScore}')
+            echo "$new_json" > $SUMMARY
+            cat $SUMMARY
+
+        - name: Post summary to OpenCamp API
+          script: |
+            curl -X POST "$COURSE_POST_API" \
+              -H "accept: application/json;charset=utf-8" \
+              -H "Content-Type: application/json" \
+              -H "token: $RUSTLINGS_TOKEN" \
+              -d @$SUMMARY \
+              -v
+
+# 云开发环境: 点击"云原生开发"按钮时启动
+$:
+  vscode:
+    - docker:
+        build: .ide/Dockerfile
+        image: rust:latest
+      services:
+        - vscode
+        - docker
+      stages:
+        - name: Install rustlings
+          script: cargo install --locked --path .
+        - name: Start rustlings watch
+          script: echo "Run 'rustlings watch' in terminal to start"
