@@ -3,15 +3,7 @@
 第一阶段将通过Rustlings进行测试，请按照以下步骤进行练习：
 
 1. 在网络浏览器中用自己的账号登录 [cnb.cool](https://cnb.cool)。
-2. 本仓库已经自动建立好，可以直接看到你要完成的实验了，有两种方式进行答题：
-
-* 本地环境：
-  1. **安装Linux的环境**。对于windows的用户，推荐使用wsl2安装Ubuntu 22.04，也可以使用vmware等虚拟机进行安装。如果在这一步存在问题，请联系助教。
-  2. **创建ssh key，用于ssh方式克隆代码**。在linux环境下，使用`ssh-keygen -t rsa -b 4096 -C "你的邮箱"`命令，创建ssh key，下面的选项全部直接敲回车即可。随后使用`cat ~/.ssh/id_rsa.pub`命令查看生成的公钥，并完整的复制下来。在 CNB 个人设置页面中，找到`SSH 公钥`选项，点击添加，将复制下来的公钥粘贴上去并保存。
-  3. **本地安装rust**。进入linux环境下，参考Arceos 教程 [Rust 开发环境配置 - ArceOS Tutorial Book (rcore-os.cn)](https://rcore-os.cn/arceos-tutorial-book/ch01-02.html) 中，找到Rust 开发环境配置的章节，相应配置即可，你可以同时将后续需要的环境也配置好。
-  4. **clone实验仓库到本地**。在仓库页面复制 SSH 克隆地址，回到本地linux环境下，使用`git clone 复制的链接`将仓库clone到本地。随后使用`cd`命令进入该文件夹，使用`cargo install --force --path .`安装rustlings。
-  5. **练习rustlings**。使用VSCode等编辑器，进入clone下来的目录下的`exercises`文件夹，执行`rustlings watch`依次查看完成情况，并依次完成对应的练习。执行`rustlings run 练习名称`去运行对应练习，也可以使用`rustlings hint 练习名称`查看题解。
-  6. **提交完成情况**。当做完部分或所有练习之后，在rustlings目录下执行 `git add .; git commit -m "update"; git push` 命令，把更新提交到 CNB 平台进行自动评测。你可以在仓库页面的构建记录中查看评测结果，或者在训练营官网查看自己的评分。
+2. fork 本仓库。
 
 * 在线环境（云原生开发）：
 
