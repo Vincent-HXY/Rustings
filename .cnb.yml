@@ -59,9 +59,10 @@ main:
 # 云开发环境: 点击"云原生开发"按钮时启动
 $:
   vscode:
-    - docker:
-        build: .ide/Dockerfile
-        image: rust:latest
+    - runner:
+        cpus: 16
+      docker:
+        image: docker.cnb.cool/learningos/oscamp-2026s/rustlings
       services:
         - vscode
         - docker
