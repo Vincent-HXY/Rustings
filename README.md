@@ -41,6 +41,20 @@
 6. 最后可以在 PR 页面来查看评分过程（可多次提交代码，每次提交都会触发评分，以最高分为准）
 7. 最终成绩会显示在 opencamp.cn 的个人中心以及课程页面的晋级榜单处。
 
+
+### 温馨提示: CNB平台成绩提交指南
+
+a.注册[opencamp](https://opencamp.cn)和 [cnb](https://cnb.cool)平台账号
+
+b.登录[opencamp](https://opencamp.cn)，点击[编辑个人信息](https://opencamp.cn/my/edit?tab=userInfo)
+
+c.往下拉，找到CNBName和GithubName (对号入座，见上图)
+
+d.不记得CNB账户看这里 -->[点此查询CNB账号信息](https://cnb.cool/profile/account)
+你没改过，默认用户名就是cnb.xxx
+
+接下来等待跑通CI测评流水线，**手动提交PR**，就会更新成绩，API提交的速度很快
+
 ### 注意事项
 
 - 上述步骤有任何问题都可以找助教。
