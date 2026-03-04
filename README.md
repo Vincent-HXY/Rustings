@@ -48,12 +48,12 @@ a.注册[opencamp](https://opencamp.cn)和 [cnb](https://cnb.cool)平台账号
 
 b.登录[opencamp](https://opencamp.cn)，点击[编辑个人信息](https://opencamp.cn/my/edit?tab=userInfo)
 
-c.往下拉，找到CNBName和GithubName (对号入座，见上图)
+c.下拉页面，找到CNBName和GithubName (填入正确的账号用户名）
 
 d.不记得CNB账户看这里 -->[点此查询CNB账号信息](https://cnb.cool/profile/account)
-你没改过，默认用户名就是cnb.xxx
+新建cnb，默认用户名是cnb.xxx（填入步骤c即可）
 
-接下来等待跑通CI测评流水线，**手动提交PR**，就会更新成绩，API提交的速度很快
+等待CI测评流水线运行，提交PR，就会更新成绩
 
 ### 注意事项
 
