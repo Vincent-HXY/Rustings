@@ -2,7 +2,7 @@
 main:
   push:
     - docker:
-        image: rust:latest
+        image: docker.cnb.cool/learningos/oscamp-2026s/rustlings
       env:
         CARGO_TERM_COLOR: always
         TZ: Asia/Shanghai
@@ -27,7 +27,7 @@ main:
 
   pull_request.target:
     - docker:
-        image: rust:latest
+        image: docker.cnb.cool/learningos/oscamp-2026s/rustlings
       env:
         CARGO_TERM_COLOR: always
         TZ: Asia/Shanghai
