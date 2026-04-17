@@ -10,6 +10,7 @@
 // a hint.
 
 use std::convert::{TryFrom, TryInto};
+use std::fs::TryLockError::Error;
 
 #[derive(Debug, PartialEq)]
 struct Color {
@@ -41,6 +42,17 @@ enum IntoColorError {
 impl TryFrom<(i16, i16, i16)> for Color {
     type Error = IntoColorError;
     fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+        if tuple.0 > 0 && tuple.0 < 256 && tuple.1 > 0 && tuple.1 < 256 && tuple.2 > 0 && tuple.2 < 256
+        {
+            Ok(Color{
+                red: tuple.0 as u8,
+                green: tuple.1 as u8,
+                blue: tuple.2 as u8,
+            })
+        }
+        else{
+            Err(IntoColorError::IntConversion)
+        }
     }
 }
 
@@ -48,6 +60,16 @@ impl TryFrom<(i16, i16, i16)> for Color {
 impl TryFrom<[i16; 3]> for Color {
     type Error = IntoColorError;
     fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+        if arr[0] > 0 && arr[0] < 256 && arr[1] > 0 && arr[1] < 256 && arr[2] > 0 && arr[2] < 256{
+            Ok(Color{
+                red: arr[0] as u8,
+                green: arr[1] as u8,
+                blue: arr[2] as u8
+            })
+        }
+        else {
+            Err(IntoColorError::IntConversion)
+        }
     }
 }
 
@@ -55,6 +77,12 @@ impl TryFrom<[i16; 3]> for Color {
 impl TryFrom<&[i16]> for Color {
     type Error = IntoColorError;
     fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+        if slice.len() != 3 {
+            Err(IntoColorError::IntConversion)
+        }
+        else{
+            self::try_from((slice[0], slice[0], slice[0]))
+        }
     }
 }
 

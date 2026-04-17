@@ -40,10 +40,36 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of
 // Person Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
+
 
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        if s.len() == 0 {
+            Person::default()
+        }
+        else {
+            let mut name = String::new();
+            let mut age = String::new();
+
+            let str: Vec<&str> = s.split(',').collect();
+            if str.len() != 2 || str[0].len() == 0 || str[1].len() == 0{
+                Person::default()
+            }
+            else {
+                let s = str[1].parse();
+                let a;
+                match s {
+                    Ok(x) => a = x,
+                    Err(_) => return Person::default()
+                }
+                Person{
+                    name: str[0].to_string(),
+                    age: a
+                }
+            }
+
+
+        }
     }
 }
 
@@ -61,7 +87,7 @@ mod tests {
     use super::*;
     #[test]
     fn test_default() {
-        // Test that the default person is 30 year old John
+        // Test that the default person is 30 years old John
         let dp = Person::default();
         assert_eq!(dp.name, "John");
         assert_eq!(dp.age, 30);
